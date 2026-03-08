@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="upload-wrap reveal">
+  <header class="upload-head">
+    <h1>Upload Plant Image</h1>
+    <p class="muted">Take or upload a clear photo of the affected plant leaf.</p>
+    <p class="muted">
+      Supported crops: Apple, Blueberry, Cherry, Corn, Grape, Orange, Peach, Pepper, Potato,
+      Raspberry, Soybean, Squash, Strawberry, Tomato.
+    </p>
+  </header>
+
+  <div id="error-box" class="error" style="display: none"></div>
+
+  <form id="upload-form" class="upload-form" enctype="multipart/form-data">
+    <label for="file" class="drop-zone" id="drop-zone">
+      <span class="upload-icon">&#8682;</span>
+      <strong>Drag & Drop Image Here</strong>
+      <small>or click to browse from your device</small>
+      <small>Supported formats: JPG, JPEG, PNG</small>
+      <input id="file" type="file" name="file" accept="image/png,image/jpeg,image/jpg" required />
+    </label>
+
+    <p id="file-name" class="file-name">No image selected</p>
+
+    <button id="submit-btn" type="submit" class="btn btn-primary">Start Detection</button>
+  </form>
+
+  <p id="status-text" class="status"></p>
+
+  <div class="tips-card">
+    <h3>Tips for Best Results</h3>
+    <ul class="tips-list">
+      <li>Use natural lighting when possible.</li>
+      <li>Focus clearly on the affected leaf area.</li>
+      <li>Keep the camera stable and avoid blur.</li>
+      <li>Capture one leaf type per image.</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("upload-form");
+  const errorBox = document.getElementById("error-box");
+  const statusText = document.getElementById("status-text");
+  const submitBtn = document.getElementById("submit-btn");
+  const fileInput = document.getElementById("file");
+  const fileName = document.getElementById("file-name");
+  const dropZone = document.getElementById("drop-zone");
+
+  const updateFileName = () => {
+    const selected = fileInput.files && fileInput.files[0];
+    fileName.textContent = selected ? selected.name : "No image selected";
+  };
+
+  fileInput.addEventListener("change", updateFileName);
+
+  ["dragenter", "dragover"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, (event) => {
+      event.preventDefault();
+      dropZone.classList.add("dragging");
+    });
+  });
+
+  ["dragleave", "drop"].forEach((eventName) => {
+    dropZone.addEventListener(eventName, (event) => {
+      event.preventDefault();
+      dropZone.classList.remove("dragging");
+    });
+  });
+
+  dropZone.addEventListener("drop", (event) => {
+    const files = event.dataTransfer.files;
+    if (files && files.length > 0) {
+      fileInput.files = files;
+      updateFileName();
+    }
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    errorBox.style.display = "none";
+    statusText.textContent = "Running prediction...";
+    submitBtn.disabled = true;
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch("/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok || data.error) {
+        throw new Error(data.error || "Prediction failed.");
+      }
+
+      window.location.href = "/result";
+    } catch (error) {
+      statusText.textContent = "";
+      errorBox.textContent = error.message;
+      errorBox.style.display = "block";
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+{% endblock %}

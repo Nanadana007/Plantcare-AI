@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="about-hero reveal">
+  <p class="eyebrow">About Our Technology</p>
+  <h1>Transforming Agriculture with AI</h1>
+  <p class="muted">
+    PlantCare AI combines computer vision and transfer learning to assist in fast,
+    interpretable plant disease classification from leaf images.
+  </p>
+</section>
+
+<section class="mission-grid reveal stagger-1">
+  <article class="mission-card">
+    <h2>Our Mission</h2>
+    <p>
+      We aim to support data-driven farming by making disease detection accessible through a
+      lightweight web interface powered by deep learning.
+    </p>
+    <p>
+      By identifying symptoms early, users can reduce crop loss, improve treatment planning,
+      and maintain healthier plants.
+    </p>
+  </article>
+  <aside class="icon-card" aria-hidden="true">
+    <div class="sprout-icon"></div>
+  </aside>
+</section>
+
+<section class="section reveal stagger-2">
+  <h2>How It Works</h2>
+  <div class="steps-grid">
+    <article>
+      <span>1</span>
+      <h3>Upload Image</h3>
+      <p>Capture or upload a clear leaf photo showing visible symptoms.</p>
+    </article>
+    <article>
+      <span>2</span>
+      <h3>AI Analysis</h3>
+      <p>MobileNetV2 extracts features and predicts disease probabilities.</p>
+    </article>
+    <article>
+      <span>3</span>
+      <h3>Get Results</h3>
+      <p>Receive class label, confidence score, and practical recommendations.</p>
+    </article>
+  </div>
+</section>
+
+<section class="model-board reveal stagger-3">
+  <h2>Our AI Model</h2>
+  <div class="model-grid">
+    <article>
+      <h3>Architecture</h3>
+      <p>MobileNetV2 with transfer learning and fine-tuning.</p>
+    </article>
+    <article>
+      <h3>Training Data</h3>
+      <p>87,000+ RGB leaf images across 38 classes.</p>
+    </article>
+    <article>
+      <h3>Supported Plants</h3>
+      <p>Apple, Tomato, Potato, Corn, Grape, and more.</p>
+    </article>
+    <article>
+      <h3>Disease Coverage</h3>
+      <p>Healthy and diseased classes with diverse symptoms.</p>
+    </article>
+  </div>
+</section>
+
+<section class="benefits reveal stagger-4">
+  <h2>Benefits</h2>
+  <div class="benefit-row">
+    <article><h3>Early Detection</h3><p>Identify disease before spread worsens.</p></article>
+    <article><h3>Cost Effective</h3><p>Reduce avoidable crop treatment costs.</p></article>
+    <article><h3>Sustainable</h3><p>Support precise and responsible interventions.</p></article>
+    <article><h3>Fast and Accurate</h3><p>Receive quick AI-assisted decisions.</p></article>
+  </div>
+</section>
+{% endblock %}

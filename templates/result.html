@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="result-wrap reveal">
+  <header class="upload-head">
+    <h1>Analysis Complete</h1>
+    <p class="muted">Here is what we found from your uploaded image.</p>
+  </header>
+
+  <div class="analysis-grid">
+    <article class="preview-card">
+      <h3>Uploaded Image</h3>
+      <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded plant leaf" class="preview" />
+    </article>
+
+    <article class="result-card {% if not analysis.is_supported %}is-unsupported{% elif analysis.is_healthy %}is-healthy{% else %}is-diseased{% endif %}">
+      <p class="status-pill">{{ analysis.status_text }}</p>
+      <h4>Plant Type</h4>
+      <p class="result-main">{{ analysis.plant_name }}</p>
+      <h4>Condition</h4>
+      <p class="result-sub">{{ analysis.condition_name }}</p>
+      <h4>Confidence</h4>
+      <p class="result-sub">{{ analysis.confidence }}%</p>
+
+      <div class="advice-box">
+        <h5>Recommended Actions</h5>
+        <p>{{ analysis.recommendation }}</p>
+      </div>
+      {% if not analysis.is_supported %}
+      <p class="scope-note">
+        Model supports: Apple, Blueberry, Cherry, Corn, Grape, Orange, Peach, Pepper, Potato,
+        Raspberry, Soybean, Squash, Strawberry, Tomato.
+      </p>
+      {% endif %}
+    </article>
+  </div>
+
+  <div class="result-actions">
+    <a class="btn btn-primary" href="{{ url_for('upload') }}">Analyze Another Image</a>
+    <a class="btn btn-secondary" href="{{ url_for('home') }}">Back to Home</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero reveal">
+  <div class="hero-copy">
+    <p class="eyebrow">AI-Powered Plant Health</p>
+    <h1>Detect Leaf Diseases in Seconds</h1>
+    <p class="muted">
+      Protect crops with instant disease detection using transfer learning and MobileNetV2.
+      Upload a leaf image and receive a class prediction with confidence and treatment guidance.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ url_for('upload') }}">Upload Image</a>
+      <a class="btn btn-secondary" href="{{ url_for('about') }}">Learn More</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="leaf-panel">
+      <p>PlantCare AI</p>
+      <h3>Transfer Learning + MobileNetV2</h3>
+      <div class="leaf-grid">
+        <span>Apple</span>
+        <span>Tomato</span>
+        <span>Corn</span>
+        <span>Grape</span>
+        <span>Potato</span>
+        <span>Pepper</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal stagger-1">
+  <h2>Why Choose PlantCare AI?</h2>
+  <div class="feature-grid">
+    <article class="feature-card">
+      <h3>Instant Detection</h3>
+      <p>Get disease prediction in seconds from a single leaf image.</p>
+    </article>
+    <article class="feature-card">
+      <h3>High Accuracy</h3>
+      <p>MobileNetV2 transfer learning tuned for multi-class plant pathology.</p>
+    </article>
+    <article class="feature-card">
+      <h3>Easy to Use</h3>
+      <p>Simple upload workflow designed for students, farmers, and researchers.</p>
+    </article>
+  </div>
+</section>
+
+<section class="stats-strip reveal stagger-2">
+  <div>
+    <h3>38+</h3>
+    <p>Plant Disease Classes</p>
+  </div>
+  <div>
+    <h3>95%</h3>
+    <p>Target Validation Accuracy</p>
+  </div>
+  <div>
+    <h3>10+</h3>
+    <p>Plant Species</p>
+  </div>
+  <div>
+    <h3>24/7</h3>
+    <p>Availability</p>
+  </div>
+</section>
+
+<section class="cta-banner reveal stagger-3">
+  <h2>Ready to Protect Your Plants?</h2>
+  <p>Start detection now with the PlantCare AI disease classifier.</p>
+  <a class="btn btn-primary" href="{{ url_for('upload') }}">Get Started Now</a>
+</section>
+{% endblock %}

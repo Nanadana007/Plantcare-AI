@@ -1,0 +1,16 @@
+@echo off
+setlocal
+set "SCRIPT_DIR=%~dp0"
+
+if exist "%SCRIPT_DIR%.venv\Scripts\python.exe" (
+  "%SCRIPT_DIR%.venv\Scripts\python.exe" "%SCRIPT_DIR%run.py"
+  goto :eof
+)
+
+where py >nul 2>nul
+if %errorlevel%==0 (
+  py -3 "%SCRIPT_DIR%run.py"
+  goto :eof
+)
+
+python "%SCRIPT_DIR%run.py"

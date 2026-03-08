@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints/
+.DS_Store
+
+# Generated runtime files
+uploads/*
+results/*
+static/images/*
+demo_frames/*
+demo_frames_attached/*
+*.mp4
+make_demo_video.py
+make_demo_video_attached.py
+
+# Model and outputs
+models/*.keras
+models/*.h5
+
+# Keep directories
+!models/.gitkeep
+!uploads/.gitkeep
+!results/.gitkeep
+!static/images/.gitkeep

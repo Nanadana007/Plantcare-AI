@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlantCare AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="ambient-glow ambient-glow-a"></div>
+    <div class="ambient-glow ambient-glow-b"></div>
+
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="{{ url_for('home') }}">
+          <span class="brand-dot">P</span>
+          <span>PlantCare AI</span>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">Menu</button>
+        <nav class="site-nav" id="site-nav">
+          <a class="{{ 'active' if active_page == 'home' else '' }}" href="{{ url_for('home') }}">Home</a>
+          <a class="{{ 'active' if active_page == 'about' else '' }}" href="{{ url_for('about') }}">About</a>
+          <a class="nav-cta {{ 'active' if active_page == 'upload' else '' }}" href="{{ url_for('upload') }}"
+            >Get Started</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="container site-main">{% block content %}{% endblock %}</main>
+
+    <footer class="container site-footer">
+      <p><strong>Smart Bridge Hyderabad</strong></p>
+      <p>Empowering agriculture through innovative AI solutions.</p>
+      <p>&copy; 2026 PlantCare AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggleNav() {
+        const nav = document.getElementById("site-nav");
+        nav.classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>
