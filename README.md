@@ -9,8 +9,10 @@ This project includes a universal launcher (`run.py`) that works on Windows, mac
 ### 0) Clone the repository
 
 ```bash
-git clone <YOUR_REPO_URL>
-cd <YOUR_REPO_FOLDER>
+git clone https://github.com/Nanadana007/Plantcare-AI.git
+cd Plantcare-AI
+pip install -r requirements.txt
+python run.py
 ```
 
 ### 1) Install Python
